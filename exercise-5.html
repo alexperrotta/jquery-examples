@@ -12,7 +12,12 @@
     HINT: Lookup .attr()
     */
     $(function() {
-      // Write code here
+      $('a').click(function(e) {   // e stands for event
+        e.preventDefault();    // when you click on a link, it won't do anything
+        
+        var website = $(this).attr('href');  // this refers to this thing that we just clicked
+        $('#iframe').attr('src', website);  // take it's source attribute and change it to the website variable
+      });
     });
     </script>
   </head>
