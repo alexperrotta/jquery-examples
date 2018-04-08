@@ -24,7 +24,9 @@
       $("#add-button").on('click', addItem);
       $("#todo-list").on('change', '.completeItem', completeItem);
       $("#todo-list").on('click', '.deleteItem', deleteItem);  // when clicking on a classs of deleteItem inside of todo-list, fire the fucntion deleteItem
-      
+      $("#todo-list").on('click', '.newText', startEditing);
+      $("#todo-list").on('click', '.saveItem', stopEditing);
+
       // this is to add a new item upon hitting enter on the keyboard
       $("#description").on('keypress', function(event){
         if(event.which === 13) {  // the 'which' was determined by viewing the keypress in the console 
@@ -35,7 +37,7 @@
         
         function addItem(event) {
         var newText = $("#description").val();
-        $("#todo-list").append("<li><input class='completeItem' type= 'checkbox'>"+ newText +  "<button type='button' class='btn btn-secondary deleteItem'>x</button></li>");
+        $("#todo-list").append("<li><input class='completeItem' type= 'checkbox'><span class='newText'>"+ newText +  "</span><input type='text' class='editText'><button type='button' class='btn btn-success saveItem'>Save</button><button type='button' class='btn btn-secondary deleteItem'>x</button></li>");
         $("#description").val("");
     }
 
@@ -48,6 +50,24 @@
       function deleteItem(event) {
         $(this).parent().remove();
       }
+
+      function startEditing(event) {
+
+        var currentText = $(this).parent().find('.newText').text();
+        $(this).parent().find('.editText').val(currentText);
+        $(this).parent().find('.editText').show();
+        $(this).parent().find('.saveItem').show();
+        $(this).parent().find('.newText').hide();
+      }
+
+        function stopEditing(event) {
+        $(this).hide(); // hides the save button
+        var newValue = $(this).parent().find('.editText').val(); // this is the newly edited text
+        $(this).parent().find('.editText').hide();
+        $(this).parent().find('.newText').text(newValue);
+        $(this).parent().find('.newText').show();
+      }
+
 
   });
 
@@ -84,6 +104,14 @@
 
     .completeItem {
       margin-right: 8px;
+    }
+
+    .editText {
+      display: none;
+    }
+
+    .saveItem {
+      display: none;
     }
 
     </style>
