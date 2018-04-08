@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
     /*
@@ -18,33 +19,75 @@
 
     */
 
-     $(function () {
-      $("#add-button").click(function() {
+     $(document).ready(function() {
+      
+      $("#add-button").on('click', addItem);
+      $("#todo-list").on('change', '.completeItem', completeItem);
+      $("#todo-list").on('click', '.deleteItem', deleteItem);  // when clicking on a classs of deleteItem inside of todo-list, fire the fucntion deleteItem
+        
+        function addItem() {
         var newText = $("#description").val();
-        $("#todo-list").append("<li>"+ newText +  "</li>");
+        $("#todo-list").append("<li><input class='completeItem' type= 'checkbox'>"+ newText +  "<button type='button' class='btn btn-secondary deleteItem'>x</button></li>");
         $("#description").val("");
-      });
+    }
+
+
+      function completeItem () {
+        $(this).parent().toggleClass('done');
+      }
+
+
+      function deleteItem () {
+        $(this).parent().remove();
+      }
+
   });
 
 
     </script>
+    
     <style>
     #wrapper {
       max-width: 480px;
       margin: auto;
+      margin-top: 40px;
     }
 
     #description, #search, #todo-list {
-      font-size: 1.5em;
+      font-size: 18px;
     }
+
+    #todo-list {
+      list-style-type: none;
+    }
+
+    #todo-list li {
+      padding: 10px;
+    }
+
+     .done {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    .btn {
+     margin-left: 8px;
+    }
+
+    .completeItem {
+      margin-right: 8px;
+    }
+
     </style>
+
+  
   </head>
   <body>
     <div id="wrapper">
-      <input id="description" type="text" name="description">
+      <input id="description" type="text" name="description" placeholder="Enter item here">
       <button id="add-button">Add Task</button>
       <ul id="todo-list">
-        <li>Feed the cat</li>
+        <!-- <li>Feed the cat</li> -->
       </ul>
     </div>
   </body>
