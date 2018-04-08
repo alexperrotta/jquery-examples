@@ -24,20 +24,28 @@
       $("#add-button").on('click', addItem);
       $("#todo-list").on('change', '.completeItem', completeItem);
       $("#todo-list").on('click', '.deleteItem', deleteItem);  // when clicking on a classs of deleteItem inside of todo-list, fire the fucntion deleteItem
+      
+      // this is to add a new item upon hitting enter on the keyboard
+      $("#description").on('keypress', function(event){
+        if(event.which === 13) {  // the 'which' was determined by viewing the keypress in the console 
+          addItem();
+          event.preventDefault(); // prevents the page from refreshing when clicking enter
+        }
+      });
         
-        function addItem() {
+        function addItem(event) {
         var newText = $("#description").val();
         $("#todo-list").append("<li><input class='completeItem' type= 'checkbox'>"+ newText +  "<button type='button' class='btn btn-secondary deleteItem'>x</button></li>");
         $("#description").val("");
     }
 
 
-      function completeItem () {
+      function completeItem(event) {
         $(this).parent().toggleClass('done');
       }
 
 
-      function deleteItem () {
+      function deleteItem(event) {
         $(this).parent().remove();
       }
 
@@ -71,7 +79,7 @@
     }
 
     .btn {
-     margin-left: 8px;
+     margin-left: 50px;
     }
 
     .completeItem {
