@@ -10,21 +10,21 @@
 
     0. Make it so that after entering the task description in the text field and clicking the "Add Task" button, a new task appears inside the element with the id todo-list.
     1. the ability to remove tasks (add an x button)
-    2. the ability to check off tasks - strikes them out wo removing (add a checkbox)
+    2. the ability to check off tasks - strikes them out w/o removing (add a checkbox)
     3. the ability to delete a task
     4. the ability to edit an existing task
 
-    .on() // 3 parameters
+    .on() // 3 parameters .on( events [, selector ] [, data ], handler )
 
     */
 
      $(function () {
       $("#add-button").click(function() {
         var newText = $("#description").val();
-        $("#todo-list").append("<li>"+ newText + "</li>");
+        $("#todo-list").append("<li>"+ newText +  "</li>");
+        $("#description").val("");
       });
-
-    });
+  });
 
 
     </script>
