@@ -20,15 +20,19 @@
         var el = $("li");
         el.html(newText);
         $("#log").append(el);
+        $("#text-field").val();
+        $("#text-field").focus(); // this will bring the cursor back to the text field form so you can type again
       });
 
-      $("form").submit(function(e)) {  // this is to enter a new li when pressing enter
+
+
+      /* $("form").submit(function(e)) {  // this is to enter a new li when pressing enter
         e.preventDefault();
         var newText = $("#text-field").val();
         var el = $("li");
         el.html(newText);
         $("#log").append(el);
-      });
+      }); */
 
     });
     </script>
