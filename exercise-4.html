@@ -17,7 +17,9 @@
 
       $("#save-button").click(function() {
         var newText = $("#text-field").val();
-        $("#log").append("<li>"+ newText + "</li>");
+        var el = $("li");
+        el.html(newText);
+        $("#log").append(el);
       });
 
     });
