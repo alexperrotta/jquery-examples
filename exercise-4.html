@@ -22,11 +22,19 @@
         $("#log").append(el);
       });
 
+      $("form").submit(function(e)) {  // this is to enter a new li when pressing enter
+        e.preventDefault();
+        var newText = $("#text-field").val();
+        var el = $("li");
+        el.html(newText);
+        $("#log").append(el);
+      });
+
     });
     </script>
   </head>
   <body>
-    <input id="text-field" type="text" name="text">
+    <form><input id="text-field" type="text" name="text"></form>
     <button id="clear-button">Clear</button>
     <button id="save-button">Save</button>
     <ul id="log">
