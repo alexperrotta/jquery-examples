@@ -13,6 +13,23 @@
     3. the ability to delete a task
     4. the ability to edit an existing task
     */
+
+    $(function() {
+
+      $("#add-button").click(function(){
+        var text = $("#description").val();
+        $("#todo-list").append("<li><span>"+text+"</span>button class='delete'></li>")
+      });
+
+      $("ul").on("click", ".delete", function(){  // the ul will always be on the page, this refers to .delete
+        $(this).parent().remove();
+      });
+
+       $("ul").on("click", "span", function(){ 
+        $(this).attr("contenteditable", "true");
+      });
+
+    }
     </script>
     <style>
     #wrapper {
@@ -29,7 +46,8 @@
       <input id="description" type="text" name="description">
       <button id="add-button">Add Task</button>
       <ul id="todo-list">
-        <li>Feed the cat</li>
+        <li><span>Feed the cat</span><button class="delete">x</button></li>
+        <!-- <li contenteditable="true"></li>  this will allow you to edit what's inside the li on the page itself-->
       </ul>
     </div>
   </body>
